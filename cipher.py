@@ -1,29 +1,28 @@
-def encrypt_text(plaintext,n):
-    ans = ""
-    # iterate over the given text
-    for i in range(len(plaintext)):
-        ch = plaintext[i]
-        
-        # check if space is there then simply add space
-        if ch==" ":
-            ans+=" "
-        # check if a character is uppercase then encrypt it accordingly 
-        elif (ch.isupper()):
-            ans += chr((ord(ch) + n-65) % 26 + 65)
-        # check if a character is lowercase then encrypt it accordingly
-        
-        else:
-            ans += chr((ord(ch) + n-97) % 26 + 97)
-    
-    return ans
+alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y',
+            'z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
-plaintext = "HELLO EVERYONE"
-n = 5
-print("Plain Text is : " + plaintext)
-print("Shift pattern is : " + str(n))
-print("Cipher Text is : " + encrypt_text(plaintext,n))
+txt = input("Please enter a sentence: ").lower()
+shift = 5
 
-txt = input("Please enter a sentence: ")  
-s = 5
+def is_alphabet(value, list):
+    #loop through list to see if character is contained
+    for i in list:
+        if i == value:
+            return True
+        False 
 
-print("The encrypted sentence is: " + encrypt_text(plaintext,n))
+def encrypt_text(text_string, shift):
+    #encrypt alphabetical value by shift amount
+    encrypted_list=[]
+
+    for plain_text in text_string:
+        if is_alphabet(plain_text, alphabet):
+            index=int(alphabet.index(plain_text))
+            plain_text=alphabet[index + shift]
+        encrypted_list.append(plain_text)
+    encrypted_string = "".join(encrypted_list)
+    print(f"The encrypted sentence is: {encrypted_string}")
+
+encrypt_text(text_string=txt,shift=shift)
+
+
